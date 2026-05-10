@@ -1,0 +1,96 @@
+<h2>论文领域定位 & 与医学图像分割的关系</h2>
+<p class="subtitle">Scan Clusters Not Pixels 属于高效视觉表示学习，其思想可直接迁移到医学分割</p>
+
+<div class="section">
+  <h3>这篇论文的定位</h3>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:180px;background:#1e1e3e;padding:14px;border-radius:8px;border-left:3px solid #4fc3f7;">
+      <div style="color:#4fc3f7;font-weight:bold;font-size:14px;">计算机视觉 (CV)</div>
+      <p style="color:#aaa;font-size:12px;margin:4px 0 0;">视觉模型的效率优化</p>
+    </div>
+    <div style="flex:1;min-width:180px;background:#1e1e3e;padding:14px;border-radius:8px;border-left:3px solid #ce93d8;">
+      <div style="color:#ce93d8;font-weight:bold;font-size:14px;">高效深度学习</div>
+      <p style="color:#aaa;font-size:12px;margin:4px 0 0;">降低视觉模型计算复杂度</p>
+    </div>
+    <div style="flex:1;min-width:180px;background:#1e1e3e;padding:14px;border-radius:8px;border-left:3px solid #81c784;">
+      <div style="color:#81c784;font-weight:bold;font-size:14px;">视觉标记化 / Tokenization</div>
+      <p style="color:#aaa;font-size:12px;margin:4px 0 0;">如何将2D图像转为1D序列</p>
+    </div>
+    <div style="flex:1;min-width:180px;background:#1e1e3e;padding:14px;border-radius:8px;border-left:3px solid #ffab40;">
+      <div style="color:#ffab40;font-weight:bold;font-size:14px;">状态空间模型 (Mamba/SSM)</div>
+      <p style="color:#aaa;font-size:12px;margin:4px 0 0;">Mamba架构的视觉适配</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>与医学图像分割的关联</h3>
+</div>
+
+<div class="split">
+  <div class="mockup">
+    <div class="mockup-header">通用视觉中的"聚类"</div>
+    <div class="mockup-body" style="padding:12px;">
+      <div style="font-size:13px;color:#ccc;line-height:1.6;">
+        <p>将图像像素按 <span style="color:#4fc3f7;">颜色/纹理相似性</span> 分组</p>
+        <p style="color:#aaa;font-size:12px;">例：天空（蓝）、草地（绿）、建筑（灰）</p>
+        <hr style="border-color:#333;">
+        <p>但这里有一个关键问题：<br>
+        <span style="color:#ffab40;">聚类是基于底层特征，不是语义标签</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="mockup">
+    <div class="mockup-header">医学分割中的天然对应</div>
+    <div class="mockup-body" style="padding:12px;">
+      <div style="font-size:13px;color:#ccc;line-height:1.6;">
+        <p>医学图像中的"簇"对应 <span style="color:#ff5252;">解剖结构/病变区域</span></p>
+        <p style="color:#aaa;font-size:12px;">例：肝脏（簇A）、肿瘤（簇B）、背景组织（簇C）</p>
+        <hr style="border-color:#333;">
+        <p><span style="color:#81c784;">医学图像天然适合聚类扫描！</span><br>
+        <span style="color:#aaa;">器官/病灶本身就是语义明确的"簇"</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>具体关联点</h3>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px;">
+
+  <div style="background:#1e2e1e;padding:14px;border-radius:8px;border-left:4px solid #81c784;">
+    <div style="font-weight:bold;color:#81c784;">关联 1：医学图像的稀疏性天然适合聚类扫描</div>
+    <p style="color:#bbb;font-size:13px;margin:6px 0 0;">
+      CT/MRI 图像中，大部分像素是背景（空气/正常组织），真正有意义的区域（器官、病灶）只占少数。<br>
+      传统光栅扫描会浪费大量计算在无意义的背景像素上。聚类扫描可以<b>自动将背景聚集为一类</b>，将计算集中在关键解剖区域。
+    </p>
+  </div>
+
+  <div style="background:#2e2e1e;padding:14px;border-radius:8px;border-left:4px solid #ffab40;">
+    <div style="font-weight:bold;color:#ffab40;">关联 2：解剖结构天然形成"语义簇"</div>
+    <p style="color:#bbb;font-size:13px;margin:6px 0 0;">
+      医学分割的目标本身就是将像素分组为解剖类别（肝脏、肾脏、肿瘤...）。<br>
+      这与聚类扫描的哲学高度一致——<b>分割的本质就是聚类</b>。如果能将聚类扫描集成到分割模型中，相当于在标记化阶段就为分割任务提供了归纳偏置。
+    </p>
+  </div>
+
+  <div style="background:#1e1e2e;padding:14px;border-radius:8px;border-left:4px solid #4fc3f7;">
+    <div style="font-weight:bold;color:#4fc3f7;">关联 3：高分辨率医学图像的计算瓶颈</div>
+    <p style="color:#bbb;font-size:13px;margin:6px 0 0;">
+      病理全切片图像（WSI）或高分辨率CT（512×512×N切片）的计算量巨大。<br>
+      聚类中心扫描将复杂度从 O(N²) 降到 O(K²)，对于需要处理大规模医学图像的下游任务尤其有价值。<br>
+      你的项目目录中有 <b>SLMamba</b>——Mamba架构本身就需要高效的序列化策略，聚类扫描可以直接作为SLMamba的输入预处理。
+    </p>
+  </div>
+
+  <div style="background:#2e1e3e;padding:14px;border-radius:8px;border-left:4px solid #ce93d8;">
+    <div style="font-weight:bold;color:#ce93d8;">关联 4：聚类引导的注意力机制</div>
+    <p style="color:#bbb;font-size:13px;margin:6px 0 0;">
+      如果将医学图像的聚类中心作为查询（query），可以让模型注意力更聚焦于关键区域。<br>
+      比如在肿瘤分割中，聚类中心可能自动落在肿瘤边界区域，这些正是分割最需要关注的位置。
+    </p>
+  </div>
+
+</div>

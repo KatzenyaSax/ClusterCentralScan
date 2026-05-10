@@ -1,0 +1,183 @@
+% This is samplepaper.tex, a sample chapter demonstrating the
+% LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.20 of 2017/10/04
+%
+\documentclass[runningheads]{llncs}
+%
+\usepackage{graphicx}
+% Used for displaying a sample figure. If possible, figure files should
+% be included in EPS format.
+%
+% If you use the hyperref package, please uncomment the following line
+% to display URLs in blue roman font according to Springer's eBook style:
+% \renewcommand\UrlFont{\color{blue}\rmfamily}
+
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{color}  %导言区调用color宏包
+\usepackage{lipsum}
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+\usepackage[pdfpagelabels=false]{hyperref}%加入链接
+\usepackage{geometry}
+\geometry{margin=1in}
+\hypersetup{
+colorlinks=true,
+linkcolor=red,
+citecolor=green
+}
+
+\usepackage{marvosym} %通讯作者标
+
+
+%\usepackage{fontspec} %字体设置包%
+\usepackage{adjustbox} %表格居中
+
+\begin{document}
+%
+\title{SLMambaMedseg: Synergizing Vision Mamba and Multi-scale Strip Large-kernel Convolutions for Medical Image Segmentation}
+\titlerunning{SLMambaMedseg: Strip Large-kernel Mamba for Medical Image Segmentation}
+
+%
+%\titlerunning{Abbreviated paper title}
+% If the paper title is too long for the running head, you can set
+% an abbreviated paper title here
+%
+%\author{Zhibo Wang\and Kaigui Wu\textsuperscript{\Letter} }
+%
+%\authorrunning{Z. Wang et al.}
+% First names are abbreviated in the running head.
+% If there are more than two authors, 'et al.' is used.
+%
+%\institute{School of Computer Science, Chongqing University, Chongqing, 400044, China\\ \email{zhibowang@stu.cqu.edu.cn}\\ \email{kaiguiwu@cqu.edu.cn}}
+%
+\maketitle              % typeset the header of the contribution
+%
+
+
+
+
+\begin{abstract}
+%The abstract should briefly summarize the contents of the paper in 15--250 words.
+
+abstract
+
+
+\keywords{keywords}
+\end{abstract}
+
+
+
+\section{Introduction}
+
+
+
+The principal contributions of this work are threefold: 
+\begin{enumerate}
+\item 1
+\item 2
+\item 3
+\end{enumerate}
+
+
+\section{Related Works}
+
+Related Works
+
+\subsection{1}
+
+1
+
+\subsection{2}
+
+2
+
+
+
+
+\section{Methodology}
+
+Methodology
+
+\subsection{1}
+
+1
+
+\subsection{2}
+
+2
+
+
+
+
+
+
+
+
+
+\section{Experiments}
+
+Experiments
+\subsection{1}
+
+1
+
+
+
+
+
+
+
+
+\subsection{2}
+
+2
+
+
+
+
+
+
+
+
+\subsection{Ablation Studies}
+
+%\subsubsection{Structure Ablation}
+
+Ablation Studies
+
+\subsubsection{1}
+
+1
+
+
+
+
+\subsubsection{2}
+
+2
+
+
+
+
+\section{Conclusions}
+
+Conclusions
+
+%本文中，我们介绍了 SLMambaMedseg ，一款基于vision mamba和多尺度大核条带卷积的新型高效医学图像分割模型，旨在进一步提升医学图像分割的效率，满足当前现实需求。我们的SLMambaMedseg采用高性能的vision mamba，配合多尺度大核卷积和条带卷积，进一步提升了全局特征与局部特征的提取精度，特别在各种微小细长的器官上表现良好。
+
+%基于Synapse与ACDC数据集上实验表明，我们的SLMambaMedseg的平均成绩超过了VM-UNet与TransCASCADE。我们还通过一系列实验进一步验证了大核卷积与条带卷积在医学图像分割领域应用的可行性与发展潜力，vision mamba非常适合构建编码模块，而利用大核卷积与条带卷积可以设计出普遍轻量级高效率的解码模块。我们认为，在未来，特别是在强调轻量级的场合中vision mamba将会进一步取代Transformer，配合大核卷积与条带卷积等新型的卷积技术将会进一步提升计算机视觉任务的整体性能。
+
+
+
+% 致谢
+%\section*{Acknowledgements}
+%This work is supported in part by the NSF grant CNS 2007284, and in part by the iMAGiNE Consortium (https://imagine.utexas.edu/) 
+
+
+\begin{thebibliography}{99}
+
+% 1.1
+\bibitem{ronneberger2015unet}
+Ronneberger, O., Fischer, P., \& Brox, T. (2015). U-net: Convolutional networks for biomedical image segmentation. In \textit{International Conference on Medical Image Computing and Computer-Assisted Intervention} (pp. 234–241).

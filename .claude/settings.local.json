@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bash scripts/start-server.sh --project-dir \"C:/Users/a1829/Desktop/ClusterCentralScan\")"
+    ]
+  }
+}
