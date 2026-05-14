@@ -1,0 +1,41 @@
+# M2SCAN model configuration
+# Multi-scale Mamba Scanning over Cluster Centers
+
+model:
+  name: "M2SCAN"
+  in_chans: 3
+  num_classes: 1
+  depths: [2, 2, 8, 2]        # VSS blocks per encoder stage
+  dims: [64, 128, 256, 512]    # channels per stage
+  K_values: [8, 6, 4, 2]       # centroids per decoder stage (S1→S4)
+  d_state: 16                   # Mamba state dimension
+  mlp_ratio: 4.0
+
+# ── Training ──
+train:
+  optimizer: "adamw"
+  lr: 1.0e-4
+  weight_decay: 1.0e-4
+  epochs: 200
+  batch_size: 16
+  input_size: [352, 352]
+  multi_scale: [0.75, 1.0, 1.25]
+  grad_clip: 0.5
+
+  # Loss weights (binary segmentation)
+  loss:
+    bce_weight: 1.0
+    iou_weight: 1.0
+
+# ── Data ──
+data:
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  num_workers: 4
+
+# ── Logging ──
+logging:
+  print_freq: 50
+  save_freq: 10
+  output_dir: "./outputs"
